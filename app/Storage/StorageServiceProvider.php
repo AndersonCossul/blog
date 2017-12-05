@@ -8,9 +8,16 @@ class StorageServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        // category
         $this->app->bind(
             'App\Storage\Category\CategoryRepositoryInterface',
-            'Appp\Storage\Category\EloquentCategoryRepository'
+            'App\Storage\Category\EloquentCategoryRepository'
+        );
+
+        // post
+        $this->app->bind(
+            'App\Storage\Post\PostRepositoryInterface',
+            'App\Storage\Post\EloquentPostRepository'
         );
     }
 }
