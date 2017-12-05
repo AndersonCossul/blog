@@ -7,7 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected $blogNamespace = 'App\Http\Controllers';
+    protected $blogNamespace = 'App\Http\Controllers\Blog';
     protected $adminNamespace = 'App\Http\Controllers\Admin';
 
     public function boot()
