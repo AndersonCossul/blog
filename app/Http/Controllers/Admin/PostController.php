@@ -43,10 +43,10 @@ class PostController extends Controller
 
         if ($post == null) {
             Session::flash('error', 'Failed to create new post');
-            return view()->back();
+            return redirect()->back();
         } else {
             Session::flash('success', 'Post created succesfully');
-            return redirect(route('admin.dashboard'));
+            return redirect()->route('admin.dashboard');
         }
     }
 

@@ -74,6 +74,9 @@
                         <a href="{{ route('admin.dashboard') }}">Home</a>
                     </li>
                     <li class="list-group-item">
+                        <a href="{{ route('admin.categories') }}">Categories</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{ route('admin.category.create') }}">Create New Category</a>
                     </li>
                     <li class="list-group-item">

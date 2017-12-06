@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCategoryFormRequest extends FormRequest
+class CategoryFormRequest extends FormRequest
 {
     public function authorize()
     {

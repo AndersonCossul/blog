@@ -21,9 +21,9 @@ class EloquentPostRepository implements PostRepositoryInterface
         return Post::create($request->all());
     }
 
-    public function update($request, $id)
+    public function update($request)
     {
-        $post = $this->find($request, $id);
+        $post = $this->find($request->id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->category_id = $request->category_id;

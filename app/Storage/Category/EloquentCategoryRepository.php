@@ -21,15 +21,16 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
         return Category::create($request->all());
     }
 
-    public function update($request, $id)
+    public function update($request)
     {
-        $category = $this->find($id);
+        $category = $this->find($request->id);
         $category->name = $request->name;
         return $category->save();
     }
 
     public function destroy($id)
     {
-        // TODO
+        $category = $this->find($id);
+        return $category->delete();
     }
 }

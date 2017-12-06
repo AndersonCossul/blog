@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateCategoryFormRequest;
+use App\Http\Requests\CategoryFormRequest;
 use App\Storage\Category\CategoryRepositoryInterface;
 
 class CategoryController extends Controller
@@ -19,7 +19,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        // TODO
+        $categories = $this->category->all();
+        return view('admin.categories.list', compact('categories'));
     }
 
     public function create()
@@ -27,31 +28,47 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(CreateCategoryFormRequest $request)
+    public function store(CategoryFormRequest $request)
     {
         $category = $this->category->store($request);
 
         if ($category == null) {
             Session::flash('error', 'Error on creating new category');
-            return view()->back();
+            return redirect()->back();
         } else {
             Session::flash('success', 'Successfully created category');
-            return redirect(route('admin.dashboard'));
+            return redirect()->route('admin.dashboard');
         }
     }
 
     public function edit($id)
     {
-        // TODO
+        $category = $this->category->find($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryFormRequest $request)
     {
-        return $this->category->update($request, $id);
+        $category = $this->category->update($request);
+
+        if ($category) {
+            Session::flash('success', 'Successfully edited');
+            return redirect()->route('admin.categories');
+        } else {
+            Session::flash('error', 'Error on editing');
+            return redirect()->back();
+        }
     }
 
     public function destroy($id)
     {
-        return $this->category->destroy($id);
+        $operation = $this->category->destroy($id);
+
+        if ($operation) {
+            Session::flash('success', 'Successfully deleted');
+        } else {
+            Session::flash('error', 'Error on editing');
+        }
+        return redirect()->back();
     }
 }
