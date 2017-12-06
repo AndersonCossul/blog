@@ -37,7 +37,7 @@ class CategoryController extends Controller
             return redirect()->back();
         } else {
             Session::flash('success', 'Successfully created category');
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.categories');
         }
     }
 
