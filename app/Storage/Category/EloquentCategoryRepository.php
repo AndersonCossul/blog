@@ -25,6 +25,11 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
     public function update($request)
     {
         $category = $this->find($request->id);
+
+        if ($category == null) {
+            return false;
+        }
+
         $category->name = $request->name;
         return $category->save();
     }
@@ -32,10 +37,16 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
     public function destroy($id)
     {
         $category = $this->find($id);
+
+        if ($category == null) {
+            return false;
+        }
+
         if (count($category->posts) > 0) {
             Session::flash('warning', 'This category has posts connected to it.');
             return false;
         }
+
         return $category->delete();
     }
 }

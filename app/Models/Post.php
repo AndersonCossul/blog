@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'content', 'category_id', 'featured_image'];
+    use SoftDeletes;
+
+    protected $fillable = ['title', 'slug', 'content', 'category_id', 'featured_image'];
+    protected $dates = ['deleted_at'];
 
     public function category()
     {

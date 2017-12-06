@@ -3,7 +3,6 @@
 namespace App\Storage\Post;
 
 use App\Models\Post;
-use Illuminate\Http\File;
 
 class EloquentPostRepository implements PostRepositoryInterface
 {
@@ -57,6 +56,11 @@ class EloquentPostRepository implements PostRepositoryInterface
     public function destroy($id)
     {
         $post = $this->find($id);
+
+        if ($post == null) {
+            return false;
+        }
+
         unlink(public_path() . '/uploads/posts/' . $post->featured_image);
         return $post->delete();
     }
