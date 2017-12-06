@@ -24,6 +24,7 @@ class EloquentPostRepository implements PostRepositoryInterface
 
         return Post::create([
             'title'             => $request->title,
+            'slug'              => str_slug($request->title),
             'featured_image'    => $new_image_name,
             'category_id'       => $request->category_id,
             'content'           => $request->content
@@ -46,9 +47,10 @@ class EloquentPostRepository implements PostRepositoryInterface
             $post->featured_image = $new_image_name;
         }
 
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->category_id = $request->category_id;
+        $post->title        = $request->title;
+        $post->slug         = str_slug($request->title);
+        $post->content      = $request->content;
+        $post->category_id  = $request->category_id;
 
         return $post->save();
     }

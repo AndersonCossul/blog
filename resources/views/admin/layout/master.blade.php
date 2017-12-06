@@ -91,6 +91,8 @@
 <script>
     @if (Session::has('success'))
         toastr.success("{{ Session::get('success') }}")
+    @elseif (Session::has('info'))
+        toastr.info("{{ Session::get('info') }}")
     @elseif (Session::has('warning'))
         toastr.warning("{{ Session::get('warning') }}")
     @elseif (Session::has('error'))

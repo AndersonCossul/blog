@@ -30,8 +30,8 @@ class PostController extends Controller
     {
         $categories = $this->category->all();
 
-        if (count($categories) == 0) {
-            Session::flash('warning', 'Please, create a category first.');
+        if ($categories->count() == 0) {
+            Session::flash('info', 'You must have at least one category created.');
             return redirect()->route('admin.category.create');
         }
 

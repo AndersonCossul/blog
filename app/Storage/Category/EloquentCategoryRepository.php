@@ -19,7 +19,10 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
 
     public function store($request)
     {
-        return Category::create($request->all());
+        return Category::create([
+            'name'  => $request->name,
+            'slug'  => str_slug($request->name)
+        ]);
     }
 
     public function update($request)
@@ -31,6 +34,8 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
         }
 
         $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+
         return $category->save();
     }
 
