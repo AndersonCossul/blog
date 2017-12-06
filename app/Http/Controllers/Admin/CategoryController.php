@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Storage\Category\CategoryRepositoryInterface as Category;
+use App\Http\Requests\CreateCategoryFormRequest;
+use App\Storage\Category\CategoryRepositoryInterface;
 
 class CategoryController extends Controller
 {
     private $category;
 
-    public function __construct(Category $category)
+    public function __construct(CategoryRepositoryInterface $category)
     {
         $this->category = $category;
     }
@@ -26,7 +27,7 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateCategoryFormRequest $request)
     {
         $category = $this->category->store($request);
 

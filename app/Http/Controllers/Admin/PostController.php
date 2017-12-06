@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePostFormRequest;
 use App\Storage\Post\PostRepositoryInterface;
 use App\Storage\Category\CategoryRepositoryInterface;
-use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -36,7 +37,7 @@ class PostController extends Controller
         return view('admin.posts.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(CreatePostFormRequest $request)
     {
         $post = $this->post->store($request);
 

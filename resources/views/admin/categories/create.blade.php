@@ -10,13 +10,15 @@
             <form action="{{ route('admin.category.store') }}" method="POST">
                 {{ csrf_field() }}
 
-                <fieldset class="form-group">
+                <fieldset class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name">Name</label>
-                    <input name="name" type="text" required placeholder="Name" class="form-control">
+                    <input name="name" type="text" required placeholder="Name" class="form-control" value="{{ old('name') }}">
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <input type="submit" value="Salvar" class="btn btn-success">
+                    <div class="text-center">
+                        <input type="submit" value="Salvar" class="btn btn-success">
+                    </div>
                 </fieldset>
             </form>
         </div>
