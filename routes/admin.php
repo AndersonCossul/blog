@@ -44,6 +44,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'as'    => 'post.delete'
     ]);
 
+    Route::get('post/delete-featured-image/{featured_image}', [
+        'uses'  => 'PostController@destroy_featured_image',
+        'as'    => 'post.delete-featured-image'
+    ]);
+
 
 
 

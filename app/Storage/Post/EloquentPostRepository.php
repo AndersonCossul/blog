@@ -23,11 +23,11 @@ class EloquentPostRepository implements PostRepositoryInterface
         $image->move('uploads/posts', $new_image_name);
 
         return Post::create([
-            'title'             => $request->title,
-            'slug'              => str_slug($request->title),
-            'featured_image'    => $new_image_name,
-            'category_id'       => $request->category_id,
-            'content'           => $request->content
+            'title' => $request->title,
+            'slug' => str_slug($request->title),
+            'featured_image' => $new_image_name,
+            'category_id' => $request->category_id,
+            'content' => $request->content
         ]);
     }
 
@@ -40,17 +40,24 @@ class EloquentPostRepository implements PostRepositoryInterface
         }
 
         if ($request->featured_image) {
+            // delete old image
+            $old_image_path = public_path() . '/uploads/posts/' . $post->featured_image;
+            if (file_exists($old_image_path)) {
+                unlink($old_image_path);
+            }
+
+            // create new image
             $image = $request->featured_image;
-            $new_image_name =  time() . '-' . str_slug($image->getClientOriginalName());
+            $new_image_name = time() . '-' . str_slug($image->getClientOriginalName());
             $image->move('uploads/posts', $new_image_name);
 
             $post->featured_image = $new_image_name;
         }
 
-        $post->title        = $request->title;
-        $post->slug         = str_slug($request->title);
-        $post->content      = $request->content;
-        $post->category_id  = $request->category_id;
+        $post->title = $request->title;
+        $post->slug = str_slug($request->title);
+        $post->content = $request->content;
+        $post->category_id = $request->category_id;
 
         return $post->save();
     }
@@ -63,7 +70,12 @@ class EloquentPostRepository implements PostRepositoryInterface
             return false;
         }
 
-        unlink(public_path() . '/uploads/posts/' . $post->featured_image);
+        // delete old image
+        $old_image_path = public_path() . '/uploads/posts/' . $post->featured_image;
+        if (file_exists($old_image_path)) {
+            unlink($old_image_path);
+        }
+
         return $post->delete();
     }
 }

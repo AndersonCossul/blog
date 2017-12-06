@@ -84,4 +84,12 @@ class PostController extends Controller
             return redirect()->back();
         }
     }
+
+    public function destroy_featured_image($featured_image)
+    {
+        if (unlink(public_path() . '/uploads/posts/' . $featured_image)) {
+           Session::flash('info', 'Select new featured image.');
+
+        }
+    }
 }

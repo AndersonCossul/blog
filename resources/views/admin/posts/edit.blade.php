@@ -7,7 +7,7 @@
         </div>
 
         <div class="panel-body">
-            <form action="{{ route('admin.post.update') }}" method="POST">
+            <form action="{{ route('admin.post.update') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" value="{{ $post->id }}">
                 @include ('admin.posts.partials.form')
