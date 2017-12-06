@@ -33,10 +33,10 @@ class CategoryController extends Controller
         $category = $this->category->store($request);
 
         if ($category == null) {
-            Session::flash('error', 'Error on creating new category');
+            Session::flash('error', 'Error on creating new category.');
             return redirect()->back();
         } else {
-            Session::flash('success', 'Successfully created category');
+            Session::flash('success', 'Successfully created category.');
             return redirect()->route('admin.categories');
         }
     }
@@ -52,10 +52,10 @@ class CategoryController extends Controller
         $category = $this->category->update($request);
 
         if ($category) {
-            Session::flash('success', 'Successfully edited');
+            Session::flash('success', 'Successfully edited.');
             return redirect()->route('admin.categories');
         } else {
-            Session::flash('error', 'Error on editing');
+            Session::flash('error', 'Error on editing.');
             return redirect()->back();
         }
     }
@@ -65,9 +65,9 @@ class CategoryController extends Controller
         $operation = $this->category->destroy($id);
 
         if ($operation) {
-            Session::flash('success', 'Successfully deleted');
+            Session::flash('success', 'Successfully deleted.');
         } else {
-            Session::flash('error', 'Error on editing');
+            Session::flash('error', 'Error on editing.');
         }
         return redirect()->back();
     }

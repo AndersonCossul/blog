@@ -35,7 +35,7 @@ class EloquentPostRepository implements PostRepositoryInterface
 
     public function destroy($id)
     {
-        // TODO
+        $post = $this->find($id);
+        return $post->delete();
     }
-
 }

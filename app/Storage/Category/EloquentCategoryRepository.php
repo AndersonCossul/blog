@@ -2,6 +2,7 @@
 
 namespace App\Storage\Category;
 
+use Session;
 use App\Models\Category;
 
 class EloquentCategoryRepository implements CategoryRepositoryInterface
@@ -31,6 +32,10 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
     public function destroy($id)
     {
         $category = $this->find($id);
+        if (count($category->posts) > 0) {
+            Session::flash('warning', 'This category has posts connected to it.');
+            return false;
+        }
         return $category->delete();
     }
 }

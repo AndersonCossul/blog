@@ -71,6 +71,9 @@
                         <a href="{{ route('admin.category.create') }}">Create New Category</a>
                     </li>
                     <li class="list-group-item">
+                        <a href="{{ route('admin.posts') }}">Posts</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{ route('admin.post.create') }}">Create New Post</a>
                     </li>
                 </ul>

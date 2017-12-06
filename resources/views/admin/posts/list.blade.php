@@ -3,35 +3,39 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Categories</h3>
+            <h3>Posts</h3>
         </div>
 
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
-                <th>Name</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Category</th>
                 <th>Edit</th>
                 <th>Delete</th>
                 </thead>
 
                 <tbody>
-                @if (count($categories) > 0)
-                    @foreach ($categories as $category)
+                @if (count($posts) > 0)
+                    @foreach ($posts as $post)
                         <tr>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->content }}</td>
+                            <td>{{ $post->category->name }}</td>
                             <td>
-                                <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}"
+                                <a href="{{ route('admin.post.edit', ['id' => $post->id]) }}"
                                    class="btn btn-default btn-xs">Edit</a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.category.delete', ['id' => $category->id]) }}"
+                                <a href="{{ route('admin.post.delete', ['id' => $post->id]) }}"
                                    class="btn btn-danger btn-xs">Delete</a>
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td><p>No Categories</p></td>
+                        <td>No posts.</td>
                     </tr>
                 @endif
                 </tbody>

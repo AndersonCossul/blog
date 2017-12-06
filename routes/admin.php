@@ -3,12 +3,22 @@
 // all these routes are with namespace App\Controllers\Admin
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function() {
+
     Route::get('/', [
         'uses'  => 'DashboardController@index',
         'as'    => 'dashboard'
     ]);
 
+
+
+
+
     // post
+    Route::get('posts', [
+        'uses'  => 'PostController@index',
+        'as'    => 'posts'
+    ]);
+
     Route::get('post/create', [
         'uses'  => 'PostController@create',
         'as'    => 'post.create'
@@ -18,6 +28,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'uses'  => 'PostController@store',
         'as'    => 'post.store'
     ]);
+
+    Route::get('post/edit/{id}', [
+        'uses'  => 'PostController@edit',
+        'as'    => 'post.edit'
+    ]);
+
+    Route::post('post/update', [
+        'uses'  => 'PostController@update',
+        'as'    => 'post.update'
+    ]);
+
+    Route::get('post/delete/{id}', [
+        'uses'  => 'PostController@destroy',
+        'as'    => 'post.delete'
+    ]);
+
+
 
 
     // category
