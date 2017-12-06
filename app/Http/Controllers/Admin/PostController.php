@@ -40,14 +40,15 @@ class PostController extends Controller
 
     public function store(PostFormRequestCreate $request)
     {
+        // save post into database
         $post = $this->post->store($request);
 
-        if ($post == null) {
-            Session::flash('error', 'Failed to create new post.');
-            return redirect()->back();
-        } else {
+        if ($post != null) {
             Session::flash('success', 'Post created succesfully.');
             return redirect()->route('admin.posts');
+        } else {
+            Session::flash('error', 'Failed to create new post.');
+            return redirect()->back();
         }
     }
 
