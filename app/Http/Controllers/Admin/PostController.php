@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Storage\Post\PostRepositoryInterface as Post;
+use App\Storage\Post\PostRepositoryInterface;
+use App\Storage\Category\CategoryRepositoryInterface;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
     private $post;
+    private $category;
 
-    public function __construct(Post $post)
+    public function __construct(PostRepositoryInterface $post, CategoryRepositoryInterface $category)
     {
         $this->post = $post;
+        $this->category = $category;
     }
 
     public function index()
@@ -22,12 +26,27 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = $this->category->all();
+
+        if (count($categories) == 0) {
+            Session::flash('warning', 'Please, create a category first.');
+            return route('admin.category.create');
+        }
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        return $this->post->create($request);
+        $post = $this->post->store($request);
+
+        if ($post == null) {
+            Session::flash('error', 'Failed to create new post');
+            return view()->back();
+        } else {
+            Session::flash('success', 'Post created succesfully');
+            return redirect(route('admin.dashboard'));
+        }
     }
 
     public function edit($id)

@@ -70,12 +70,15 @@
         <div class="row">
             <div class="col-lg-4">
                 <ul class="list-group">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <li class="list-group-item">Home</li>
-                    </a>
-                    <a href="{{ route('admin.post.create') }}">
-                        <li class="list-group-item">Create New Post</li>
-                    </a>
+                    <li class="list-group-item">
+                        <a href="{{ route('admin.dashboard') }}">Home</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('admin.category.create') }}">Create New Category</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('admin.post.create') }}">Create New Post</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-8">

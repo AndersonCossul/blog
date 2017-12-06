@@ -26,6 +26,16 @@
                 </fieldset>
 
                 <fieldset class="form-group">
+                    <label for="category_id">Category</label>
+                    <select name="category_id" class="form-control">
+                        <option disabled selected>Select</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </fieldset>
+
+                <fieldset class="form-group">
                     <input type="submit" value="Salvar" class="btn btn-success">
                 </fieldset>
             </form>

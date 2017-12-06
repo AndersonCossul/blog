@@ -18,7 +18,7 @@ class EloquentPostRepository implements PostRepositoryInterface
 
     public function store($request)
     {
-        return Post::create($request);
+        return Post::create($request->all());
     }
 
     public function update($request, $id)

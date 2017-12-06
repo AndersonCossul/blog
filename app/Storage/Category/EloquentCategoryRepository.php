@@ -18,7 +18,7 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
 
     public function store($request)
     {
-        return Category::create($request);
+        return Category::create($request->all());
     }
 
     public function update($request, $id)

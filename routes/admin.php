@@ -8,6 +8,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'as'    => 'dashboard'
     ]);
 
+    // post
     Route::get('post/create', [
         'uses'  => 'PostController@create',
         'as'    => 'post.create'
@@ -16,5 +17,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::post('post/store', [
         'uses'  => 'PostController@store',
         'as'    => 'post.store'
+    ]);
+
+
+    // category
+    Route::get('category/create', [
+        'uses'  => 'CategoryController@create',
+        'as'    => 'category.create'
+    ]);
+
+    Route::post('category/store', [
+        'uses'  => 'CategoryController@store',
+        'as'    => 'category.store'
     ]);
 });
