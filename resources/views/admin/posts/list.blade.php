@@ -9,6 +9,7 @@
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
+                <th>Image</th>
                 <th>Title</th>
                 <th>Content</th>
                 <th>Category</th>
@@ -20,6 +21,7 @@
                 @if (count($posts) > 0)
                     @foreach ($posts as $post)
                         <tr>
+                            <td><img src="{{ $post->featured_image }}" width="100px" height="100px"></td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->category->name }}</td>

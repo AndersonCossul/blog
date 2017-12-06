@@ -12,6 +12,11 @@ class Post extends Model
     protected $fillable = ['title', 'slug', 'content', 'category_id', 'featured_image'];
     protected $dates = ['deleted_at'];
 
+    public function getFeaturedImageAttribute($featured_image)
+    {
+        return asset('uploads/posts/' . $featured_image);
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');

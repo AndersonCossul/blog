@@ -27,7 +27,7 @@
     <label for="featured_image">Featured Image</label>
     @if (isset($post->featured_image))
         <hr>
-        <img src="{{ asset('uploads/posts/' . $post->featured_image) }}" class="img-fluid">
+        <img src="{{ $post->featured_image }}" class="img-fluid">
         <hr>
         <span>Click to select a new one or leave it to keep the actual one.</span>
     @endif
