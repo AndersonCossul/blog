@@ -17,7 +17,7 @@
                 <td>{{ $post->content }}</td>
                 <td>{{ $post->category->name }}</td>
                 <td>
-                    <a href="{{ route('admin.post.edit', ['id' => $post->id]) }}"
+                    <a href="{{ route('admin.post.restore', ['id' => $post->id]) }}"
                        class="btn btn-success btn-xs">Restore</a>
                 </td>
                 <td>

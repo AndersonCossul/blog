@@ -86,12 +86,25 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+    public function restore($id)
+    {
+        $operation = $this->post->restore($id);
+
+        if ($operation) {
+            Session::flash('success', 'Post restored succesfully.');
+        } else {
+            Session::flash('error', 'Failed to restore post.');
+        }
+
+        return redirect()->back();
+    }
+
     public function permanent_destroy($id)
     {
         $operation = $this->post->permanent_destroy($id);
 
         if ($operation) {
-            Session::flash('success', 'Post deleted succesfully.');
+            Session::flash('success', 'Post permanently deleted succesfully.');
         } else {
             Session::flash('error', 'Failed to delete post.');
         }

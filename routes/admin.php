@@ -44,6 +44,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'as'    => 'post.delete'
     ]);
 
+    Route::get('post/restore/{id}', [
+        'uses'  => 'PostController@restore',
+        'as'    => 'post.restore'
+    ]);
+
     Route::get('post/permanent-delete/{id}', [
         'uses'  => 'PostController@permanent_destroy',
         'as'    => 'post.permanent-delete'
@@ -81,6 +86,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('category/delete/{id}', [
         'uses'  => 'CategoryController@permanent_destroy',
         'as'    => 'category.delete'
+    ]);
+
+    Route::get('category/restore/{id}', [
+        'uses'  => 'CategoryController@restore',
+        'as'    => 'category.restore'
     ]);
 
     Route::get('category/permanent-delete/{id}', [

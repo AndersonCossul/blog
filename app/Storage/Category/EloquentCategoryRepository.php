@@ -17,6 +17,11 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
         return Category::find($id);
     }
 
+    public function findTrashed($id)
+    {
+        return Category::withTrashed()->where('id', '=', $id)->first();
+    }
+
     public function store($request)
     {
         return Category::create([
@@ -55,9 +60,20 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
         return $category->delete();
     }
 
+    public function restore($id)
+    {
+        $category = $this->findTrashed($id);
+
+        if ($category == null) {
+            return false;
+        }
+
+        return $category->restore();
+    }
+
     public function permanent_destroy($id)
     {
-        $category = Category::withTrashed()->where('id', '=', $id)->first();
+        $category = $this->findTrashed($id);
 
         if ($category == null) {
             return false;

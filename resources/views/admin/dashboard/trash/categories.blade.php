@@ -11,7 +11,7 @@
             <tr>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}"
+                    <a href="{{ route('admin.category.restore', ['id' => $category->id]) }}"
                        class="btn btn-success btn-xs">Restore</a>
                 </td>
                 <td>

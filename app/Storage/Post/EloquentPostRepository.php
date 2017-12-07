@@ -16,6 +16,11 @@ class EloquentPostRepository implements PostRepositoryInterface
         return Post::find($id);
     }
 
+    public function findTrashed($id)
+    {
+        return Post::withTrashed()->where('id', '=', $id)->first();
+    }
+
     public function store($request)
     {
         $image = $request->featured_image;
@@ -74,9 +79,20 @@ class EloquentPostRepository implements PostRepositoryInterface
         return $post->delete();
     }
 
+    public function restore($id)
+    {
+        $post = $this->findTrashed($id);
+
+        if ($post == null) {
+            return false;
+        }
+
+        return $post->restore();
+    }
+
     public function permanent_destroy($id)
     {
-        $post = Post::withTrashed()->where('id', '=', $id)->first();
+        $post = $this->findTrashed($id);
 
         if ($post == null) {
             return false;
