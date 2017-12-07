@@ -54,4 +54,9 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
 
         return $category->delete();
     }
+
+    public function onlyTrashed()
+    {
+        return Category::onlyTrashed()->get();
+    }
 }

@@ -65,9 +65,9 @@ class CategoryController extends Controller
         $operation = $this->category->destroy($id);
 
         if ($operation) {
-            Session::flash('success', 'Successfully deleted.');
+            Session::flash('success', 'Category trashed succesfully.');
         } else {
-            Session::flash('error', 'Error on editing.');
+            Session::flash('error', 'Failed to trash category.');
         }
         return redirect()->back();
     }

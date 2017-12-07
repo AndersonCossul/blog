@@ -18,7 +18,7 @@
                 </thead>
 
                 <tbody>
-                @if (count($posts) > 0)
+                @if ($posts->count() > 0)
                     @foreach ($posts as $post)
                         <tr>
                             <td><img src="{{ $post->featured_image }}" width="100px" height="100px"></td>
@@ -31,7 +31,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.post.delete', ['id' => $post->id]) }}"
-                                   class="btn btn-danger btn-xs">Delete</a>
+                                   class="btn btn-danger btn-xs">Trash</a>
                             </td>
                         </tr>
                     @endforeach

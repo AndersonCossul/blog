@@ -15,7 +15,7 @@
                 </thead>
 
                 <tbody>
-                @if (count($categories) > 0)
+                @if ($categories->count() > 0)
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->name }}</td>
@@ -25,7 +25,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.category.delete', ['id' => $category->id]) }}"
-                                   class="btn btn-danger btn-xs">Delete</a>
+                                   class="btn btn-danger btn-xs">Trash</a>
                             </td>
                         </tr>
                     @endforeach

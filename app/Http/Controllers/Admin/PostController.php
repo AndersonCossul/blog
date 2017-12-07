@@ -77,10 +77,10 @@ class PostController extends Controller
         $operation = $this->post->destroy($id);
 
         if ($operation) {
-            Session::flash('success', 'Post deleted succesfully.');
+            Session::flash('success', 'Post trashed succesfully.');
             return redirect()->route('admin.posts');
         } else {
-            Session::flash('error', 'Failed to delete post.');
+            Session::flash('error', 'Failed to trash post.');
             return redirect()->back();
         }
     }

@@ -70,12 +70,11 @@ class EloquentPostRepository implements PostRepositoryInterface
             return false;
         }
 
-        // delete old image
-        $old_image_path = public_path() . '/uploads/posts/' . $post->featured_image;
-        if (file_exists($old_image_path)) {
-            unlink($old_image_path);
-        }
-
         return $post->delete();
+    }
+
+    public function onlyTrashed()
+    {
+        return Post::onlyTrashed()->get();
     }
 }

@@ -52,6 +52,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
 
 
+
     // category
     Route::get('categories', [
         'uses'  => 'CategoryController@index',
@@ -80,5 +81,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('category/delete/{id}', [
         'uses'  => 'CategoryController@destroy',
         'as'    => 'category.delete'
+    ]);
+
+
+
+
+
+
+    Route::get('trash', [
+        'uses'  => 'DashboardController@trash',
+        'as'    => 'trash'
     ]);
 });

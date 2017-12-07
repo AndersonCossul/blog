@@ -76,6 +76,9 @@
                     <li class="list-group-item">
                         <a href="{{ route('admin.post.create') }}">Create New Post</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{{ route('admin.trash') }}">Trash</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-8">
