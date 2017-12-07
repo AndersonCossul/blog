@@ -44,9 +44,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         'as'    => 'post.delete'
     ]);
 
-    Route::get('post/delete-featured-image/{featured_image}', [
-        'uses'  => 'PostController@destroy_featured_image',
-        'as'    => 'post.delete-featured-image'
+    Route::get('post/permanent-delete/{id}', [
+        'uses'  => 'PostController@permanent_destroy',
+        'as'    => 'post.permanent-delete'
     ]);
 
 
@@ -79,8 +79,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     ]);
 
     Route::get('category/delete/{id}', [
-        'uses'  => 'CategoryController@destroy',
+        'uses'  => 'CategoryController@permanent_destroy',
         'as'    => 'category.delete'
+    ]);
+
+    Route::get('category/permanent-delete/{id}', [
+        'uses'  => 'CategoryController@destroy',
+        'as'    => 'category.permanent-delete'
     ]);
 
 

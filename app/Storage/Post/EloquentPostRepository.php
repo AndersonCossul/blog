@@ -41,14 +41,15 @@ class EloquentPostRepository implements PostRepositoryInterface
 
         if ($request->featured_image) {
             // delete old image
-            $old_image_path = public_path() . '/uploads/posts/' . $post->featured_image;
+            // using getOriginal so it skips the acessor of getting the url instead of path
+            $old_image_path = public_path() . '/uploads/posts/' . $post->getOriginal('featured_image');
             if (file_exists($old_image_path)) {
                 unlink($old_image_path);
             }
 
             // create new image
             $image = $request->featured_image;
-            $new_image_name = time() . '-' . str_slug($image->getClientOriginalName());
+            $new_image_name = time() . '-' . $image->getClientOriginalName();
             $image->move('uploads/posts', $new_image_name);
 
             $post->featured_image = $new_image_name;
@@ -71,6 +72,24 @@ class EloquentPostRepository implements PostRepositoryInterface
         }
 
         return $post->delete();
+    }
+
+    public function permanent_destroy($id)
+    {
+        $post = Post::withTrashed()->where('id', '=', $id)->first();
+
+        if ($post == null) {
+            return false;
+        }
+
+        // delete old image
+        // using getOriginal so it skips the acessor of getting the url instead of path
+        $old_image_path = public_path() . '/uploads/posts/' . $post->getOriginal('featured_image');
+        if (file_exists($old_image_path)) {
+            unlink($old_image_path);
+        }
+
+        return $post->forceDelete();
     }
 
     public function onlyTrashed()

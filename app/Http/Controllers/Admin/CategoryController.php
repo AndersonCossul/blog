@@ -71,4 +71,16 @@ class CategoryController extends Controller
         }
         return redirect()->back();
     }
+
+    public function permanent_destroy($id)
+    {
+        $operation = $this->category->permanent_destroy($id);
+
+        if ($operation) {
+            Session::flash('success', 'Category deleted succesfully.');
+        } else {
+            Session::flash('error', 'Failed to deleted category.');
+        }
+        return redirect()->back();
+    }
 }

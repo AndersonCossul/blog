@@ -55,6 +55,17 @@ class EloquentCategoryRepository implements CategoryRepositoryInterface
         return $category->delete();
     }
 
+    public function permanent_destroy($id)
+    {
+        $category = Category::withTrashed()->where('id', '=', $id)->first();
+
+        if ($category == null) {
+            return false;
+        }
+
+        return $category->forceDelete();
+    }
+
     public function onlyTrashed()
     {
         return Category::onlyTrashed()->get();

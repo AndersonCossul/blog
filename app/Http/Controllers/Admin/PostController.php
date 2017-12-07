@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use URL;
 use Session;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequestCreate;
@@ -78,18 +79,24 @@ class PostController extends Controller
 
         if ($operation) {
             Session::flash('success', 'Post trashed succesfully.');
-            return redirect()->route('admin.posts');
         } else {
             Session::flash('error', 'Failed to trash post.');
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
-    public function destroy_featured_image($featured_image)
+    public function permanent_destroy($id)
     {
-        if (unlink(public_path() . '/uploads/posts/' . $featured_image)) {
-           Session::flash('info', 'Select new featured image.');
+        $operation = $this->post->permanent_destroy($id);
 
+        if ($operation) {
+            Session::flash('success', 'Post deleted succesfully.');
+        } else {
+            Session::flash('error', 'Failed to delete post.');
         }
+
+        return redirect()->back();
+
     }
 }

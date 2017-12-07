@@ -18,10 +18,10 @@
                 <td>{{ $post->category->name }}</td>
                 <td>
                     <a href="{{ route('admin.post.edit', ['id' => $post->id]) }}"
-                       class="btn btn-default btn-xs">Restore</a>
+                       class="btn btn-success btn-xs">Restore</a>
                 </td>
                 <td>
-                    <a href="{{ route('admin.post.delete', ['id' => $post->id]) }}"
+                    <a href="{{ route('admin.post.permanent-delete', ['id' => $post->id]) }}"
                        class="btn btn-danger btn-xs">Delete</a>
                 </td>
             </tr>

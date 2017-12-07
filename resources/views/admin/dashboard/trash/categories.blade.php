@@ -12,10 +12,10 @@
                 <td>{{ $category->name }}</td>
                 <td>
                     <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}"
-                       class="btn btn-default btn-xs">Restore</a>
+                       class="btn btn-success btn-xs">Restore</a>
                 </td>
                 <td>
-                    <a href="{{ route('admin.category.delete', ['id' => $category->id]) }}"
+                    <a href="{{ route('admin.category.permanent-delete', ['id' => $category->id]) }}"
                        class="btn btn-danger btn-xs">Trash</a>
                 </td>
             </tr>
