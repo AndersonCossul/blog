@@ -22,7 +22,7 @@
         @endforeach
     @else
         <tr>
-            <td><p>No Categories trashed.</p></td>
+            <td colspan="3">No Categories trashed.</td>
         </tr>
     @endif
     </tbody>

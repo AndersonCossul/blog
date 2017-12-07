@@ -28,7 +28,7 @@
         @endforeach
     @else
         <tr>
-            <td>No posts.</td>
+            <td colspan="6">No posts trashed.</td>
         </tr>
     @endif
     </tbody>

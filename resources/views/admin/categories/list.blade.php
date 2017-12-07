@@ -31,7 +31,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td><p>No Categories</p></td>
+                        <td colspan="3">No Categories</td>
                     </tr>
                 @endif
                 </tbody>

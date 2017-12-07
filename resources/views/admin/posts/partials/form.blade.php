@@ -29,7 +29,7 @@
         <hr>
         <img src="{{ $post->featured_image }}" class="img-fluid">
         <hr>
-        <span>Click to select a new one or leave it to keep the actual one.</span>
+        <span>Click to select a new image or leave it to keep the actual one.</span>
     @endif
     <input name="featured_image" type="file" class="form-control">
 </fieldset>
